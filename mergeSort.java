@@ -1,6 +1,74 @@
 import java.util.*;
 import java.util.Scanner;
-//public class mergeSort {
+
+public class mergeSort{
+    public static void merge(int[] arr,int l,int m,int r){
+        int n1=m-l+1;
+        int n2=r-m;
+        int[] a=new int[n1];
+        int[] b=new int[n2];
+        for(int i=0;i<n1;i++){
+            a[i]=arr[l+i];
+        }
+        for(int j=0;j<n2;j++){
+            b[j]=arr[m+1+j];
+        }
+        int i=0;
+        int j=0;
+        int k=l;
+        while(i<n1 && j<n2) {
+            if (a[i] <= b[j]) {
+                arr[k] = a[i];
+                i++;
+
+            } else {
+                arr[k] = b[j];
+                j++;
+
+            }
+            k++;
+        }
+            while(i<n1){
+                arr[k]=a[i];
+                i++;
+                k++;
+            }
+            while(j<n2){
+                arr[k]=b[j];
+                j++;
+                k++;
+            }
+}
+    public static void divide(int[] arr,int l,int r){
+        if(l<r){
+        int m=l+(r-l)/2;
+        divide(arr,l,m);
+        divide(arr,m+1,r);
+        merge(arr,l,m,r);}
+    }
+
+
+    public static void main(String[] args) {
+        int[] arr={7,6,5,4,3,2,1};
+        int n=arr.length;
+        System.out.println("The unsorted array is: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i]);
+        }
+        divide(arr,0,n-1);
+        System.out.println("\nSorted array is:\n ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i]);
+        }
+
+        }
+    }
+    //code completed
+    
+
+
+
+    //public class mergeSort {
 //    public static void merge(int[] arr,int l,int r,int m){
 //        int n1,n2;
 //        n1=m-l+1;
@@ -138,7 +206,7 @@ import java.util.Scanner;
 //            sort(arr, m + 1, r);
 //
 //            // Merge the sorted halves
-//            merge(arr, l, m, r);
+//           merge(arr, l, m, r);
 //        }
 //    }
 //
@@ -151,7 +219,7 @@ import java.util.Scanner;
 //        System.out.println();
 //    }
 //
-//    // Driver code
+//    
 //    public static void main(String args[])
 //    {
 //        int arr[] = { 12, 11, 13, 5, 6, 7 };
@@ -166,66 +234,3 @@ import java.util.Scanner;
 //        printArray(arr);
 //    }
 //}
-///* This code is contributed by Rajat Mishra */
-public class mergeSort{
-    public static void merge(int[] arr,int l,int m,int r){
-        int n1=m-l+1;
-        int n2=r-m;
-        int[] a=new int[n1];
-        int[] b=new int[n2];
-        for(int i=0;i<n1;i++){
-            a[i]=arr[l+i];
-        }
-        for(int j=0;j<n2;j++){
-            b[j]=arr[m+1+j];
-        }
-        int i=0;
-        int j=0;
-        int k=l;
-        while(i<n1 && j<n2) {
-            if (a[i] <= b[j]) {
-                arr[k] = a[i];
-                i++;
-
-            } else {
-                arr[k] = b[j];
-                j++;
-
-            }
-            k++;
-        }
-            while(i<n1){
-                arr[k]=a[i];
-                i++;
-                k++;
-            }
-            while(j<n2){
-                arr[k]=b[j];
-                j++;
-                k++;
-            }
-}
-    public static void divide(int[] arr,int l,int r){
-        if(l<r){
-        int m=l+(r-l)/2;
-        divide(arr,l,m);
-        divide(arr,m+1,r);
-        merge(arr,l,m,r);}
-    }
-
-
-    public static void main(String[] args) {
-        int[] arr={7,6,5,4,3,2,1};
-        int n=arr.length;
-        System.out.println("The unsorted array is: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i]);
-        }
-        divide(arr,0,n-1);
-        System.out.println("\nSorted array is:\n ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i]);
-        }
-
-        }
-    }
